@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presupuesto Tienda Online · Luana Persíncula · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1714;
+    --mid: #3D3830;
+    --accent: #C8A96E;
+    --accent2: #8C6D3F;
+    --muted: #7A7268;
+    --subtle: #EAE4DA;
+    --line: rgba(26,23,20,0.10);
+  }
+  html { font-size: 15px; }
+  body { background: var(--cream); color: var(--dark); font-family: 'DM Sans', system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 820px; margin: 0 auto; padding: 48px 32px 80px; }
+
+  /* HEADER */
+  .header { border-bottom: 2px solid var(--dark); padding-bottom: 28px; margin-bottom: 40px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .header-label { font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .header-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 40px); font-weight: 700; line-height: 1.1; }
+  .header-title em { font-style: italic; color: var(--accent2); }
+  .header-meta { text-align: right; font-size: 12px; color: var(--muted); line-height: 2; flex-shrink: 0; }
+  .header-meta strong { display: block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--dark); font-weight: 600; line-height: 1.4; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 48px; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent2); margin-bottom: 6px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--dark); border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 20px; }
+
+  /* FLAGS */
+  .flag { display: flex; gap: 10px; padding: 12px 16px; margin-bottom: 10px; border-left: 3px solid; font-size: 13px; line-height: 1.55; border-radius: 0 2px 2px 0; }
+  .flag-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .flag-text strong { display: block; margin-bottom: 2px; font-size: 13px; }
+  .flag.ok   { background: #EEF5F0; border-color: #4A7C59; color: #1F4A2C; }
+  .flag.warn { background: #FDF3EE; border-color: #C95F3A; color: #7A2A10; }
+  .flag.info { background: #F5EFE4; border-color: #C8A96E; color: #5C3D10; }
+
+  /* ADVISORY */
+  .advisory { background: var(--subtle); border-left: 3px solid var(--accent); padding: 12px 16px; margin-bottom: 16px; font-size: 12.5px; color: var(--mid); line-height: 1.55; }
+  .advisory strong { color: var(--dark); }
+
+  /* IVA BADGE */
+  .iva-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(26,23,20,0.07); border: 1px solid var(--line); padding: 5px 12px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 480px; }
+  thead th { background: var(--dark); color: var(--cream); font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; padding: 9px 14px; text-align: left; font-weight: 500; }
+  thead th:last-child { text-align: right; }
+  tbody tr { border-bottom: 1px solid var(--line); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) { background: rgba(0,0,0,0.018); }
+  td { padding: 12px 14px; vertical-align: top; }
+  td:last-child { text-align: right; white-space: nowrap; }
+  .td-name { font-weight: 600; font-size: 13.5px; color: var(--dark); }
+  .td-note { font-size: 11.5px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+  .price-cell { font-family: 'DM Mono', monospace; font-weight: 500; color: var(--dark); font-size: 13px; }
+  .price-note { display: block; font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+
+  /* TAGS */
+  .tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; margin-left: 5px; vertical-align: middle; font-weight: 600; }
+  .tag-free     { background: #D4EDDA; color: #1A5C30; }
+  .tag-new      { background: #D6EAF8; color: #1A4A7A; }
+  .tag-included { background: #E8F4FD; color: #1A5276; }
+  .tag-rec      { background: rgba(200,169,110,0.2); color: var(--accent2); }
+  .tag-ok       { background: #EEF5F0; color: #1F4A2C; }
+
+  /* TABLE TOTALS */
+  .tfoot-main td { padding: 14px 14px 6px; border-top: 2px solid var(--dark); border-bottom: none; font-weight: 700; font-family: 'Playfair Display', serif; font-size: 15px; }
+  .tfoot-main .price-cell { font-size: 20px; font-family: 'DM Mono', monospace; }
+  .tfoot-sub td { padding: 8px 14px; font-size: 12px; color: var(--mid); background: var(--subtle); border-bottom: 1px solid var(--line); font-weight: 500; }
+  .tfoot-sub:last-child td { border-bottom: none; }
+  .tfoot-sub .price-cell { font-size: 13px; }
+
+  /* CARDS */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .card { background: #fff; border: 1px solid var(--line); padding: 18px; border-radius: 2px; }
+  .card-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .card-name { font-weight: 700; font-size: 15px; color: var(--dark); margin-bottom: 6px; }
+  .card-price { font-family: 'DM Mono', monospace; font-size: 17px; font-weight: 500; color: var(--dark); margin-bottom: 4px; }
+  .card-price-sub { font-size: 11.5px; color: var(--muted); }
+  .card-desc { font-size: 12px; color: var(--mid); margin-top: 8px; line-height: 1.55; }
+  .card-link { display: inline-block; margin-top: 12px; font-size: 12px; color: var(--accent2); text-decoration: underline; word-break: break-all; font-weight: 500; }
+
+  /* PAYMENT SPLIT */
+  .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+  .payment-card { background: var(--dark); color: var(--cream); padding: 20px 22px; border-radius: 2px; }
+  .payment-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .payment-amount { font-family: 'Playfair Display', serif; font-size: clamp(22px, 4vw, 30px); font-weight: 700; line-height: 1; }
+  .payment-desc { font-size: 11.5px; color: rgba(245,240,232,0.55); margin-top: 10px; line-height: 1.55; }
+
+  /* RECURRING */
+  .recurring-box { border: 1px solid var(--line); overflow: hidden; margin-top: 20px; }
+  .recurring-head { background: var(--dark); padding: 10px 16px; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+  .recurring-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px; }
+  .recurring-row:last-of-type { border-bottom: none; }
+  .rr-val { font-family: 'DM Mono', monospace; font-weight: 500; white-space: nowrap; flex-shrink: 0; font-size: 12.5px; }
+  .recurring-total { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-top: 2px solid var(--dark); font-weight: 700; font-size: 14px; }
+  .recurring-total .rr-val { font-size: 14px; }
+
+  /* CONDITIONS */
+  .conditions { background: var(--dark); color: var(--cream); padding: 28px; margin-top: 40px; border-radius: 2px; }
+  .conditions h4 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--accent); margin-bottom: 16px; }
+  .conditions ul { list-style: none; font-size: 12.5px; line-height: 1.7; color: rgba(245,240,232,0.82); }
+  .conditions li { padding: 5px 0 5px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; }
+  .conditions li:last-child { border-bottom: none; }
+  .conditions li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+
+  /* FOOTER */
+  .footer { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 10.5px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    html { font-size: 14px; }
+    .page { padding: 20px 14px 60px; }
+    .header-meta { text-align: left; }
+    .payment-grid { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .header-top { flex-direction: column; }
+    .footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-label">Propuesta comercial · Desarrollado por Marcos Casas</div>
+      <div class="header-title">Tienda Online<br><em>Luana Persíncula</em></div>
+    </div>
+    <div class="header-meta">
+      <strong>Versión actualizada</strong>
+      Marzo 2026<br>
+      luanamerchstore@gmail.com<br>
+      TC ref.: $41 UYU / USD
+    </div>
+  </div>
+</header>
+
+
+<!-- ACTUALIZACIONES -->
+<section class="section">
+  <div class="section-label">Resumen de actualizaciones</div>
+  <div class="section-title">Cambios respecto a la propuesta anterior</div>
+
+  <div class="flag ok">
+    <span class="flag-icon">✓</span>
+    <div class="flag-text">
+      <strong>Shopify Basic: $25 USD/mes — sin cambios</strong>
+      El plan Basic se mantiene en $25 USD/mes (facturación mensual), equivalente a ~$1.025 UYU/mes. En modalidad anual baja a $19 USD/mes ($19 × 12 = $228 USD/año, pagando por adelantado).
+    </div>
+  </div>
+
+  <div class="flag ok">
+    <span class="flag-icon">✓</span>
+    <div class="flag-text">
+      <strong>MercadoPago: integración oficial disponible para Uruguay, sin costo extra</strong>
+      MercadoPago es partner oficial de Shopify en Uruguay. La app se instala gratuitamente desde el panel de Shopify y la configuración está incluida en los honorarios de desarrollo ya presupuestados — no es un ítem de cobro aparte.
+    </div>
+  </div>
+
+  <div class="flag ok">
+    <span class="flag-icon">✓</span>
+    <div class="flag-text">
+      <strong>Tipo de cambio estable</strong>
+      El peso uruguayo cotiza a $40,61 UYU/USD (BCU, 30/03/2026). Se mantiene referencia en $41 UYU/USD.
+    </div>
+  </div>
+
+  <div class="flag info">
+    <span class="flag-icon">↻</span>
+    <div class="flag-text">
+      <strong>App de reseñas: se reemplaza Opinew por Judge.me (gratuito)</strong>
+      Opinew tiene un plan free muy limitado y su Starter cuesta $19 USD/mes. Judge.me ofrece reseñas y foto reviews ilimitadas, rich snippets de SEO y 130+ integraciones, todo en plan gratuito.
+    </div>
+  </div>
+
+  <div class="flag info">
+    <span class="flag-icon">$</span>
+    <div class="flag-text">
+      <strong>Todos los honorarios de desarrollo están expresados sin IVA (22%)</strong>
+      Esto aplica exclusivamente a los ítems de desarrollo. Los costos de plataformas (Shopify, dominios, themes) se facturan desde el exterior y no aplican IVA local.
+    </div>
+  </div>
+</section>
+
+
+<!-- PLATAFORMAS -->
+<section class="section">
+  <div class="section-label">Tarifas de plataformas</div>
+  <div class="section-title">Suscripciones y servicios externos</div>
+  <div class="advisory">Estos costos los paga directamente el equipo de Luana a cada proveedor desde el inicio del proyecto. <strong>No aplica IVA local</strong> (facturación desde el exterior).</div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:54%">Servicio</th><th style="width:18%">Período</th><th style="width:28%">Costo</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="td-name">Shopify Basic <span class="tag tag-ok">Confirmado</span></div>
+          <div class="td-note">Tienda online completa, carrito, inventario (10 ubicaciones), soporte 24/7. No incluye cuentas adicionales de staff ni reportes avanzados.<br>Alternativa anual: <strong>$19 USD/mes</strong> pagando $228 USD de una vez — ahorro del 24%.</div>
+        </td>
+        <td>Mensual</td>
+        <td class="price-cell">$1.025 UYU<span class="price-note">= $25 USD / mes</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="td-name">Dominio luana.uy</div>
+          <div class="td-note">Registro a nombre de la artista. Recomendado via registrador acreditado (Netuy, HostingMontevideo) por mejor panel y menor costo que NIC.uy directo (~$25 USD/año vía NIC).</div>
+        </td>
+        <td>Anual</td>
+        <td class="price-cell">~$410–$1.025 UYU<span class="price-note">= ~$10–$25 USD / año</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="td-name">Dominio luana.com.uy</div>
+          <div class="td-note">Ídem anterior. Recomendado adquirir ambas extensiones para proteger la marca y evitar phishing. Propiedad de la artista para usos futuros.</div>
+        </td>
+        <td>Anual</td>
+        <td class="price-cell">~$410–$1.025 UYU<span class="price-note">= ~$10–$25 USD / año</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="td-name">Theme pago <span class="tag tag-new">A elegir</span></div>
+          <div class="td-note">Pago único, licencia vitalicia, actualizaciones incluidas. Ver opciones con links a continuación.</div>
+        </td>
+        <td>Único</td>
+        <td class="price-cell">Ver opciones</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- THEMES -->
+<section class="section">
+  <div class="section-label">Opciones de diseño · Elegir una</div>
+  <div class="section-title">Themes recomendados para la tienda</div>
+
+  <div class="advisory"><strong>Se puede probar cualquier theme gratis antes de comprar.</strong> El pago se realiza solo al publicar la tienda. Todo el contenido (colores, textos, imágenes, tipografía) se adapta al brand de Luana — el theme es la base estructural. <strong>No aplica IVA.</strong></div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-label">Opción 1 · Catálogo pequeño, lifestyle</div>
+      <div class="card-name">Divine</div>
+      <div class="card-price">$120 USD</div>
+      <div class="card-price-sub">~$4.920 UYU · pago único</div>
+      <div class="card-desc">Diseño elegante y visual, orientado a lifestyle y artistas. Banners centrales, navegación limpia, alta conversión. Ideal para catálogos pequeños y branding fuerte. Desarrollado por Swissuplabs.</div>
+      <a class="card-link" href="https://themes.shopify.com/themes/divine/presets/divine" target="_blank">→ Ver theme en Shopify (Divine)</a>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Opción 2 · Fashion, mobile-first</div>
+      <div class="card-name">Genie · preset Jasmine</div>
+      <div class="card-price" style="font-size:14px;color:var(--muted);">Verificar precio</div>
+      <div class="card-price-sub">Consultar en el link · pago único</div>
+      <div class="card-desc">Diseño fashion-forward con animaciones modernas y alta personalización. Pensado específicamente para indumentaria y merch. Perfecto para el catálogo de Luana. Desarrollado por Shine Dezign.</div>
+      <a class="card-link" href="https://themes.shopify.com/themes/genie/presets/jasmine" target="_blank">→ Ver theme en Shopify (Genie / Jasmine)</a>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Opción 3 · Editorial, premium</div>
+      <div class="card-name">Starlite · preset Nyra</div>
+      <div class="card-price">$280 USD</div>
+      <div class="card-price-sub">~$11.480 UYU · pago único</div>
+      <div class="card-desc">El más completo. Estilo editorial premium ideal para artistas y marcas creativas. 25+ secciones nativas, dark mode nativo, grillas flexibles. La inversión más alta, pero la mayor libertad de diseño. Desarrollado por Shine Dezign.</div>
+      <a class="card-link" href="https://themes.shopify.com/themes/starlite/presets/nyra" target="_blank">→ Ver theme en Shopify (Starlite / Nyra)</a>
+    </div>
+  </div>
+
+  <div class="advisory" style="margin-top:0;">Con cualquiera de los tres themes, <strong>PageFly puede no ser necesario</strong> — los tres tienen secciones nativas suficientes para la arquitectura de la tienda. Se evalúa al momento del desarrollo.</div>
+</section>
+
+
+<!-- APPS -->
+<section class="section">
+  <div class="section-label">Apps de Shopify</div>
+  <div class="section-title">Aplicaciones incluidas en el desarrollo</div>
+  <div class="advisory">La instalación y configuración de todas las apps está incluida en el costo de desarrollo. Las apps gratuitas no generan costo mensual adicional.</div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:28%">App</th><th style="width:48%">Función</th><th style="width:24%">Costo mensual</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="td-name">MercadoPago <span class="tag tag-new">Pasarela</span></div></td>
+        <td><div class="td-note" style="color:var(--mid)">Pasarela de pago principal. Partner oficial de Shopify en Uruguay. Acepta tarjetas crédito/débito, transferencias y efectivo (RedPagos, Abitab). Integración y configuración incluidas en el desarrollo, sin costo aparte.</div></td>
+        <td class="price-cell"><span class="tag tag-included">En desarrollo</span><span class="price-note">~2,99% comis./venta<br>+ 2% cargo Shopify Basic</span></td>
+      </tr>
+      <tr>
+        <td><div class="td-name">PageFly <span class="tag tag-rec">Condicional</span></div></td>
+        <td><div class="td-note" style="color:var(--mid)">Builder visual avanzado. Solo se instala si el theme elegido no cubre la personalización necesaria. Plan free hasta 3 páginas publicadas. Pago: $24 USD/mes si se requiere más.</div></td>
+        <td class="price-cell"><span class="tag tag-free">Gratis</span><span class="price-note">Si aplica</span></td>
+      </tr>
+      <tr>
+        <td><div class="td-name">Pop Convert</div></td>
+        <td><div class="td-note" style="color:var(--mid)">Captura de leads mediante pop-ups y banners. Construye base de suscriptores para campañas de lanzamiento de merch. 100% gratuita, sin limitaciones.</div></td>
+        <td class="price-cell"><span class="tag tag-free">Gratis</span></td>
+      </tr>
+      <tr>
+        <td><div class="td-name">Wishlist Plus</div></td>
+        <td><div class="td-note" style="color:var(--mid)">Favoritos y alertas de stock. Aumenta retención y tasa de retorno. Plan free hasta ~5.000 sesiones/mes — suficiente para el arranque de la tienda.</div></td>
+        <td class="price-cell"><span class="tag tag-free">Gratis</span></td>
+      </tr>
+      <tr>
+        <td><div class="td-name">Judge.me <span class="tag tag-new">Reemplaza Opinew</span></div></td>
+        <td><div class="td-note" style="color:var(--mid)">Reseñas de productos. Plan free ilimitado: reseñas y foto reviews sin límite, rich snippets de SEO para Google, 130+ integraciones nativas. Opinew fue removido por limitaciones del free y costo de $19 USD/mes en Starter.</div></td>
+        <td class="price-cell"><span class="tag tag-free">Gratis</span><span class="price-note">Plan free ilimitado</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- ENVÍOS -->
+<section class="section">
+  <div class="section-label">Logística</div>
+  <div class="section-title">Métodos de envío</div>
+  <div class="advisory">El equipo de Luana gestiona directamente los envíos con el operador. La configuración técnica en Shopify está incluida en el desarrollo.</div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:30%">Configuración</th><th style="width:45%">Detalle</th><th style="width:25%">Costo</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="td-name">Zonas de envío <span class="tag tag-new">Incluido</span></div></td>
+        <td><div class="td-note" style="color:var(--mid)">Configuración de tarifas manuales: Montevideo, interior, exterior. Integración de tarifas de OCA y/o Correo Uruguayo como opciones en el checkout. Opción de retiro en punto si se requiere.</div></td>
+        <td class="price-cell"><span class="tag tag-included">En desarrollo</span><span class="price-note">Sin costo adicional</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+
+<!-- DESARROLLO -->
+<section class="section">
+  <div class="section-label">Honorarios de desarrollo</div>
+  <div class="section-title">Costo de desarrollo y configuración</div>
+
+  <div class="iva-badge">⚠ Todos los precios de desarrollo son sin IVA (22%)</div>
+  <div class="advisory">Honorarios actualizados por variación de costos jun. 2025 → mar. 2026. Valores redondeados en pesos uruguayos.</div>
+
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th style="width:55%">Etapa</th><th style="width:18%">Anterior</th><th style="width:27%">Actualizado</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="td-name">Configuración inicial</div>
+          <div class="td-note">Alta de cuentas Shopify, dominio, MercadoPago, Judge.me, Pop Convert, Wishlist Plus. Configuración de permisos y accesos del equipo de Luana. Integración de pasarela de pago incluida en este ítem.</div>
+        </td>
+        <td class="price-cell" style="font-size:12px;color:var(--muted);">$9.000</td>
+        <td class="price-cell">$9.500 <span class="price-note">+ IVA</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="td-name">Diseño, secciones y personalización</div>
+          <div class="td-note">Diseño responsive mobile-first, paleta de colores, tipografía y layouts del brand de Luana. Secciones de inicio, catálogo y contacto. Plantillas de productos. Adaptación de todos los assets del equipo de diseño.</div>
+        </td>
+        <td class="price-cell" style="font-size:12px;color:var(--muted);">$27.000</td>
+        <td class="price-cell">$29.000 <span class="price-note">+ IVA</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="td-name">Conexión de dominio, apps, pasarela y envíos</div>
+          <div class="td-note">Vinculación del dominio .uy a la tienda. Configuración de MercadoPago (checkout, métodos de pago). Instalación y setup de todas las apps. Configuración de métodos de envío por zonas.</div>
+        </td>
+        <td class="price-cell" style="font-size:12px;color:var(--muted);">$19.000</td>
+        <td class="price-cell">$20.000 <span class="price-note">+ IVA</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="td-name">SEO y testing multiplataforma</div>
+          <div class="td-note">Optimización de metadatos, URLs, rich snippets. Testing en iOS/Android, Chrome/Safari/Firefox, múltiples resoluciones. Verificación del flujo de compra completo.</div>
+        </td>
+        <td class="price-cell" style="font-size:12px;color:var(--muted);">$9.000</td>
+        <td class="price-cell">$9.500 <span class="price-note">+ IVA</span></td>
+      </tr>
+      <tr>
+        <td>
+          <div class="td-name">Manual de administración + capacitación</div>
+          <div class="td-note">Manual de uso del backoffice: gestión de productos, pedidos, inventario y descuentos. Taller presencial de capacitación para el equipo de Luana (~2 hs).</div>
+        </td>
+        <td class="price-cell" style="font-size:12px;color:var(--muted);">$6.000</td>
+        <td class="price-cell">$6.500 <span class="price-note">+ IVA</span></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr class="tfoot-main">
+        <td colspan="2">Total de desarrollo <span style="font-size:11px;font-weight:400;font-family:'DM Sans',sans-serif;color:var(--muted)">(precios sin IVA)</span></td>
+        <td class="price-cell">$74.500 UYU</td>
+      </tr>
+      <tr class="tfoot-sub">
+        <td colspan="2">Adelanto 20% — Al firmar la propuesta</td>
+        <td class="price-cell">$14.900 UYU</td>
+      </tr>
+      <tr class="tfoot-sub">
+        <td colspan="2">Saldo 80% — Al aprobar la entrega final</td>
+        <td class="price-cell">$59.600 UYU</td>
+      </tr>
+    </tfoot>
+  </table>
+  </div>
+
+  <div class="payment-grid">
+    <div class="payment-card">
+      <div class="payment-label">Adelanto · Inicio del proyecto</div>
+      <div class="payment-amount">$14.900 UYU</div>
+      <div class="payment-desc">20% del total. Se abona junto con la contratación de Shopify y el dominio. Sin IVA.</div>
+    </div>
+    <div class="payment-card">
+      <div class="payment-label">Saldo · Entrega final</div>
+      <div class="payment-amount">$59.600 UYU</div>
+      <div class="payment-desc">80% restante. Se abona al aprobar la tienda, antes de transferir la administración. Sin IVA.</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RECURRENTES -->
+<section class="section">
+  <div class="section-label">Costos permanentes del equipo de Luana</div>
+  <div class="section-title">Costos mensuales post-entrega</div>
+  <div class="advisory">Desde la entrega, el equipo de Luana asume estos costos directamente. No hay honorarios de desarrollo adicionales salvo nuevas funcionalidades presupuestadas.</div>
+
+  <div class="recurring-box">
+    <div class="recurring-head">Estimado mensual fijo</div>
+    <div class="recurring-row"><span>Shopify Basic</span><span class="rr-val">$1.025 UYU · $25 USD</span></div>
+    <div class="recurring-row"><span>Dominios .uy y .com.uy <span style="font-size:11px;color:var(--muted)">(prorrateado)</span></span><span class="rr-val">~$70–$170 UYU</span></div>
+    <div class="recurring-row"><span>Apps (Judge.me, Pop Convert, Wishlist Plus)</span><span class="rr-val" style="color:#1F4A2C;">$0</span></div>
+    <div class="recurring-row"><span>Comisión Shopify por pasarela de terceros <span style="font-size:11px;color:var(--muted)">(plan Basic)</span></span><span class="rr-val" style="color:var(--muted);">2% por venta</span></div>
+    <div class="recurring-row"><span>Comisión MercadoPago</span><span class="rr-val" style="color:var(--muted);">~2,99% por venta</span></div>
+    <div class="recurring-total"><span>Total fijo estimado / mes</span><span class="rr-val">~$1.100–$1.200 UYU</span></div>
+  </div>
+
+  <div class="flag warn" style="margin-top:14px;">
+    <span class="flag-icon">⚠</span>
+    <div class="flag-text">
+      <strong>Comisiones por transacción — costo operativo de la tienda</strong>
+      Al no estar disponible Shopify Payments en Uruguay, Shopify cobra un 2% adicional sobre cada venta con pasarela de terceros (plan Basic). Sumado a la comisión de MercadoPago (~2,99%), el costo combinado es ~5% por venta. Esto es un gasto operativo de la tienda que asume Luana, no un costo de desarrollo.
+    </div>
+  </div>
+</section>
+
+
+<!-- CONDITIONS -->
+<div class="conditions">
+  <h4>Condiciones del proyecto</h4>
+  <ul>
+    <li>Al acordar la propuesta, el equipo de Luana contrata y paga Shopify, los dominios y el theme elegido. El adelanto del 20% de desarrollo se abona en ese momento.</li>
+    <li>El equipo de diseño de Luana provee el brand completo antes de iniciar el desarrollo: logo, paleta, tipografías, banners e imágenes.</li>
+    <li>Plazo de primera entrega: no mayor a <strong>30 días corridos</strong> desde el inicio del desarrollo.</li>
+    <li>Correcciones: 15 días adicionales por ronda. Se permiten hasta <strong>2 rondas de correcciones</strong> sin sobrecargo.</li>
+    <li>Al finalizar y aprobar la tienda, se transfiere la administración completa y el pago de tarifas permanentes al equipo de Luana.</li>
+    <li>El equipo de desarrollo queda disponible para presupuestar nuevas funcionalidades sin compromiso de continuidad.</li>
+    <li>Precios en pesos uruguayos. El tipo de cambio para conversiones es el vigente al momento de emitir cada factura.</li>
+    <li><strong>Los honorarios de desarrollo no incluyen IVA (22%).</strong> Las plataformas externas (Shopify, dominios, themes) no aplican IVA local.</li>
+  </ul>
+</div>
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Desarrollado por Marcos Casas · Dopamina</span>
+  <span>Presupuesto válido 30 días · Marzo 2026</span>
+</div>
+
+</div>
+</body>
+</html>
